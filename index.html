@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chad Pivot: Your AI CEO (PARODY website)</title>
+<meta name="description" content="PARODY website. Chad Pivot is a fictional AI CEO. Not a real product. Nothing is for sale.">
+<script>try{var t=localStorage.getItem("chad-theme");if(t==="dark")document.documentElement.setAttribute("data-theme","dark");}catch(e){}</script>
+<style>
+  :root { --bg:#ffffff; --bg2:#f5f5f7; --card:#f5f5f7; --line:#d2d2d7; --text:#1d1d1f; --muted:#6e6e73; --red:#d12a0d; --gold:#a85a00; --nav:rgba(255,255,255,.8); }
+  html[data-theme="dark"] { --bg:#000; --bg2:#0b0d12; --card:#14171f; --line:#262b38; --text:#f2f3f6; --muted:#9aa3b2; --red:#e53012; --gold:#ffb300; --nav:rgba(0,0,0,.75); }
+  * { box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { margin:0; background:var(--bg); color:var(--text); font-family:-apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; line-height:1.5; }
+  a { color:inherit; }
+  .banner { background:#ffb300; color:#000; text-align:center; padding:8px 12px; font-size:.85rem; font-weight:600; position:sticky; top:0; z-index:20; }
+  nav { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:14px 24px; position:sticky; top:35px; z-index:10; background:var(--nav); backdrop-filter:blur(14px); border-bottom:1px solid var(--line); flex-wrap:wrap; }
+  nav .logo { font-weight:700; }
+  nav .links { display:flex; gap:20px; font-size:.9rem; color:var(--muted); flex-wrap:wrap; }
+  nav .links a { text-decoration:none; } nav .links a:hover { color:var(--text); }
+  .right { display:flex; gap:10px; align-items:center; }
+  .lang button { background:none; border:1px solid var(--line); color:var(--muted); padding:4px 10px; border-radius:14px; cursor:pointer; }
+  .lang button.on { color:var(--text); border-color:var(--red); }
+  .theme { background:none; border:1px solid var(--line); color:var(--text); width:34px; height:30px; border-radius:15px; cursor:pointer; font-size:1rem; }
+  .btn { display:inline-block; padding:12px 24px; border-radius:30px; text-decoration:none; font-weight:600; border:1px solid transparent; cursor:pointer; }
+  .btn.red { background:var(--red); color:#fff; } .btn.red:hover { filter:brightness(1.15); }
+  .btn.ghost { border-color:var(--muted); color:var(--text); } .btn.ghost:hover { border-color:var(--text); }
+  .btn.small { padding:7px 16px; font-size:.85rem; }
+  section { padding:96px 24px; max-width:1000px; margin:0 auto; text-align:center; }
+  .hero { padding-top:64px; }
+  .eyebrow { color:var(--gold); font-weight:600; letter-spacing:.04em; }
+  h1 { font-size:clamp(3rem, 10vw, 6rem); margin:6px 0 0; letter-spacing:-.03em; line-height:1; }
+  .hero h2 { font-size:clamp(1.4rem, 4vw, 2.2rem); font-weight:500; color:var(--muted); margin:10px 0 18px; }
+  h2.title { font-size:clamp(1.8rem, 5vw, 3rem); letter-spacing:-.02em; margin:0 0 40px; line-height:1.1; }
+  .sub { max-width:620px; margin:0 auto 28px; color:var(--muted); font-size:1.15rem; }
+  .cta { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
+  .badge { display:inline-block; margin-top:22px; border:1px solid var(--gold); color:var(--gold); padding:4px 14px; border-radius:20px; font-size:.85rem; }
+  .eye { width:260px; max-width:60%; margin:36px auto 0; display:block; }
+  .glow { animation:pulse 3s ease-in-out infinite; transform-origin:256px 215px; }
+  @keyframes pulse { 0%,100% { transform:scale(1); opacity:.9; } 50% { transform:scale(1.04); opacity:1; } }
+  .grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(210px, 1fr)); gap:16px; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:20px; padding:28px 22px; text-align:left; }
+  .card h3 { margin:0 0 8px; font-size:1.2rem; }
+  .card p { margin:0; color:var(--muted); }
+  .specs { background:var(--bg2); max-width:none; }
+  .specs .grid { max-width:1000px; margin:0 auto; }
+  .num { font-size:3.2rem; font-weight:700; letter-spacing:-.03em; }
+  .lbl { color:var(--muted); }
+  table { width:100%; max-width:760px; margin:0 auto; border-collapse:collapse; }
+  th, td { padding:14px 10px; border-bottom:1px solid var(--line); text-align:center; }
+  th:first-child, td:first-child { text-align:left; color:var(--muted); }
+  th { font-size:1.05rem; }
+  td.win { color:var(--gold); font-weight:600; }
+  .scroll { overflow-x:auto; }
+  .quote { font-size:1.15rem; }
+  .who { color:var(--muted); margin-top:12px; font-size:.9rem; }
+  .fine { color:var(--muted); font-size:.85rem; margin-top:20px; }
+  .price { background:var(--card); border:1px solid var(--line); border-radius:24px; max-width:420px; margin:0 auto; padding:36px 28px; }
+  .price .big { font-size:3rem; font-weight:700; margin:6px 0 14px; }
+  .price ul { list-style:none; padding:0; margin:0 0 24px; color:var(--muted); }
+  .price li { padding:6px 0; }
+  .notice { max-width:560px; margin:22px auto 0; border:1px solid var(--gold); border-radius:14px; padding:14px 16px; color:var(--gold); font-size:.92rem; text-align:left; }
+  footer { border-top:1px solid var(--line); padding:36px 24px 60px; text-align:center; color:var(--muted); font-size:.85rem; }
+  footer .wrap { max-width:720px; margin:0 auto; }
+  footer .strong { color:var(--gold); font-weight:600; margin-bottom:10px; }
+  .fade { opacity:0; transform:translateY(24px); transition:opacity .8s ease, transform .8s ease; }
+  .fade.in { opacity:1; transform:none; }
+  @media (prefers-reduced-motion:reduce) { .fade { opacity:1; transform:none; transition:none; } .glow { animation:none; } }
+</style>
+</head>
+<body>
+
+<div class="banner" data-i18n="banner"></div>
+
+<nav>
+  <span class="logo">Chad Pivot</span>
+  <span class="links">
+    <a href="#features" data-i18n="nav_features"></a>
+    <a href="#specs" data-i18n="nav_specs"></a>
+    <a href="#compare" data-i18n="nav_compare"></a>
+    <a href="#pricing" data-i18n="nav_pricing"></a>
+  </span>
+  <span class="right">
+    <button class="theme" onclick="toggleTheme()" aria-label="Toggle dark mode" title="Dark / Light">🌓</button>
+    <span class="lang"><button id="b-en" class="on" onclick="setLang('en')">EN</button> <button id="b-es" onclick="setLang('es')">ES</button></span>
+    <a class="btn red small" href="demo.html" data-i18n="demo"></a>
+  </span>
+</nav>
+
+<section class="hero">
+  <div class="eyebrow" data-i18n="intro"></div>
+  <h1>Chad Pivot.</h1>
+  <h2 data-i18n="tagline"></h2>
+  <p class="sub" data-i18n="hero_p"></p>
+  <div class="cta">
+    <a class="btn red" href="demo.html" data-i18n="demo"></a>
+    <a class="btn ghost" href="https://ko-fi.com/chadpivotceoai" target="_blank" rel="noopener" data-i18n="donate"></a>
+  </div>
+  <div class="badge" data-i18n="badge"></div>
+
+  <svg class="eye" viewBox="0 0 512 512" role="img" aria-label="Chad Pivot, a glowing red lens wearing a tie">
+    <defs>
+      <radialGradient id="bg" cx="50%" cy="40%" r="75%"><stop offset="0" stop-color="#2b2f3a"/><stop offset="1" stop-color="#0b0d12"/></radialGradient>
+      <radialGradient id="lens" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#fff3a0"/><stop offset=".18" stop-color="#ffb300"/><stop offset=".45" stop-color="#e53012"/><stop offset="1" stop-color="#4a0905"/></radialGradient>
+      <linearGradient id="ring" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d9dde5"/><stop offset="1" stop-color="#5b616e"/></linearGradient>
+      <linearGradient id="tie" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e53012"/><stop offset="1" stop-color="#8f1a0a"/></linearGradient>
+    </defs>
+    <circle cx="256" cy="256" r="256" fill="url(#bg)"/>
+    <circle cx="256" cy="215" r="150" fill="#e53012" opacity=".18"/>
+    <circle cx="256" cy="215" r="112" fill="url(#ring)"/>
+    <circle cx="256" cy="215" r="96" fill="#0b0d12"/>
+    <g class="glow"><circle cx="256" cy="215" r="82" fill="url(#lens)"/><ellipse cx="228" cy="185" rx="22" ry="12" fill="#fff" opacity=".35" transform="rotate(-30 228 185)"/></g>
+    <polygon points="196,345 256,375 316,345 316,330 196,330" fill="#e8ebf0"/>
+    <polygon points="238,372 274,372 262,388 250,388" fill="url(#tie)"/>
+    <polygon points="250,388 262,388 284,470 256,490 228,470" fill="url(#tie)"/>
+    <text x="256" y="445" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="#ffd9d2" text-anchor="middle" opacity=".9">CEO</text>
+  </svg>
+</section>
+
+<section id="features" class="fade">
+  <h2 class="title" data-i18n="feat_title"></h2>
+  <div class="grid">
+    <div class="card"><h3>Pivot Engine™</h3><p data-i18n="f1"></p></div>
+    <div class="card"><h3>Synergy Core™</h3><p data-i18n="f2"></p></div>
+    <div class="card"><h3>Layoff Assist™</h3><p data-i18n="f3"></p></div>
+    <div class="card"><h3>Meeting Maximizer™</h3><p data-i18n="f4"></p></div>
+  </div>
+</section>
+
+<section id="specs" class="specs fade">
+  <h2 class="title" data-i18n="spec_title"></h2>
+  <div class="grid">
+    <div><div class="num">0</div><div class="lbl" data-i18n="s1"></div></div>
+    <div><div class="num">€0</div><div class="lbl" data-i18n="s2"></div></div>
+    <div><div class="num">400</div><div class="lbl" data-i18n="s3"></div></div>
+    <div><div class="num">8</div><div class="lbl" data-i18n="s4"></div></div>
+  </div>
+</section>
+
+<section id="compare" class="fade">
+  <h2 class="title" data-i18n="cmp_title"></h2>
+  <div class="scroll">
+  <table>
+    <tr><th></th><th data-i18n="c_human"></th><th>Chad Pivot</th></tr>
+    <tr><td data-i18n="r1"></td><td data-i18n="r1h"></td><td class="win" data-i18n="r1c"></td></tr>
+    <tr><td data-i18n="r2"></td><td>✓</td><td class="win">✓</td></tr>
+    <tr><td data-i18n="r3"></td><td data-i18n="r3h"></td><td class="win" data-i18n="r3c"></td></tr>
+    <tr><td data-i18n="r4"></td><td data-i18n="r4h"></td><td class="win" data-i18n="r4c"></td></tr>
+    <tr><td data-i18n="r5"></td><td data-i18n="r5h"></td><td class="win" data-i18n="r5c"></td></tr>
+  </table>
+  </div>
+</section>
+
+<section class="fade">
+  <h2 class="title" data-i18n="test_title"></h2>
+  <div class="grid">
+    <div class="card"><div class="quote" data-i18n="t1"></div><div class="who" data-i18n="t1w"></div></div>
+    <div class="card"><div class="quote" data-i18n="t2"></div><div class="who" data-i18n="t2w"></div></div>
+    <div class="card"><div class="quote" data-i18n="t3"></div><div class="who" data-i18n="t3w"></div></div>
+  </div>
+  <p class="fine" data-i18n="t_fine"></p>
+</section>
+
+<section id="pricing" class="fade">
+  <h2 class="title" data-i18n="price_title"></h2>
+  <div class="price">
+    <div class="eyebrow">Millionaire Bonus™</div>
+    <div class="big" data-i18n="p_big"></div>
+    <ul>
+      <li data-i18n="p1"></li>
+      <li data-i18n="p2"></li>
+      <li data-i18n="p3"></li>
+    </ul>
+    <a class="btn red" href="https://ko-fi.com/chadpivotceoai" target="_blank" rel="noopener" data-i18n="p_btn"></a>
+  </div>
+  <div class="notice" data-i18n="p_notice"></div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="strong" data-i18n="foot1"></div>
+    <p data-i18n="foot2"></p>
+    <p>
+      <a href="demo.html">Demo</a> ·
+      <a href="https://ko-fi.com/chadpivotceoai" target="_blank" rel="noopener">Ko-fi</a> ·
+      <a href="https://github.com/chadpivotceoai/chad-pivot" target="_blank" rel="noopener">GitHub</a>
+    </p>
+    <p data-i18n="foot3"></p>
+  </div>
+</footer>
+
+<script>
+const T = {
+  en: {
+    banner:"⚠️ PARODY WEBSITE. Chad Pivot is not a real product, there is no real AI, and nothing here is for sale.",
+    nav_features:"Features", nav_specs:"Specs", nav_compare:"Compare", nav_pricing:"Pricing",
+    demo:"See online demo", donate:"Donate a coffee ☕",
+    intro:"Introducing", tagline:"Leadership, reimagined.",
+    hero_p:"The world’s first AI CEO that has never read your email and still has an opinion about it.",
+    badge:"100% parody. 0% product.",
+    feat_title:"Built different. Mostly built from buzzwords.",
+    f1:"Changes company strategy every 5 minutes. Fully automated. Zero evidence required.",
+    f2:"Says “synergy” in every meeting with absolute confidence. Meaning not included.",
+    f3:"Delivers difficult news with simulated empathy and a 12-slide deck.",
+    f4:"Turns any email into a 90-minute call. Automatically.",
+    spec_title:"The numbers speak for themselves. Nobody checked them.",
+    s1:"business lunches", s2:"salary", s3:"meetings per day that could have been an email", s4:"months for every “quick win”",
+    cmp_title:"Chad Pivot vs. a human CEO",
+    c_human:"Human CEO",
+    r1:"Salary", r1h:"Millions", r1c:"€0",
+    r2:"Says “let’s circle back”",
+    r3:"Reads the emails", r3h:"Sometimes", r3c:"Never",
+    r4:"Needs a yacht", r4h:"Yes", r4c:"Only the picture",
+    r5:"Is this a real product?", r5h:"Yes", r5c:"Absolutely not",
+    test_title:"Loved by nobody in particular.",
+    t1:"“I used to own 3 yachts. Now I own 2.”", t1w:"Former CEO (fictional)",
+    t2:"“Chad never takes a vacation. He doesn’t know what that is.”", t2w:"Imaginary board member",
+    t3:"“Synergy!”", t3w:"Chad Pivot, about himself",
+    t_fine:"All testimonials are invented. All people quoted are fictional.",
+    price_title:"One simple price.",
+    p_big:"1 coffee ☕",
+    p1:"Unlimited buzzwords", p2:"Zero equity", p3:"Layoff emails not included",
+    p_btn:"Donate on Ko-fi",
+    p_notice:"⚠️ This is a voluntary donation to support a joke project, not a purchase. You receive no product and no service, only our gratitude and maybe a smile. Nothing on this site is for sale.",
+    foot1:"PARODY. Chad Pivot is a fictional character and this is a joke website.",
+    foot2:"Not affiliated with any real company, person, or product. No real AI is used. Any resemblance to real bosses is pure synergy.",
+    foot3:"© Chad Pivot. May contain buzzwords. Not approved by any board of directors."
+  },
+  es: {
+    banner:"⚠️ WEB DE PARODIA. Chad Pivot no es un producto real, no hay IA real y aquí no se vende nada.",
+    nav_features:"Funciones", nav_specs:"Datos", nav_compare:"Comparar", nav_pricing:"Precio",
+    demo:"Ver demo online", donate:"Dona un café ☕",
+    intro:"Presentamos a", tagline:"El liderazgo, reinventado.",
+    hero_p:"El primer CEO con IA del mundo que nunca ha leído tu correo y aun así tiene una opinión sobre él.",
+    badge:"100% parodia. 0% producto.",
+    feat_title:"Hecho distinto. Sobre todo hecho de frases de moda.",
+    f1:"Cambia la estrategia de la empresa cada 5 minutos. Totalmente automático. Sin necesidad de pruebas.",
+    f2:"Dice “sinergia” en cada reunión con total seguridad. Significado no incluido.",
+    f3:"Da las malas noticias con empatía simulada y una presentación de 12 diapositivas.",
+    f4:"Convierte cualquier correo en una llamada de 90 minutos. Automáticamente.",
+    spec_title:"Los números hablan por sí solos. Nadie los comprobó.",
+    s1:"almuerzos de negocios", s2:"salario", s3:"reuniones al día que podían ser un correo", s4:"meses por cada “quick win”",
+    cmp_title:"Chad Pivot vs. un CEO humano",
+    c_human:"CEO humano",
+    r1:"Salario", r1h:"Millones", r1c:"0 €",
+    r2:"Dice “circulemos esto”",
+    r3:"Lee los correos", r3h:"A veces", r3c:"Nunca",
+    r4:"Necesita un yate", r4h:"Sí", r4c:"Solo la foto",
+    r5:"¿Es un producto real?", r5h:"Sí", r5c:"Para nada",
+    test_title:"Querido por nadie en particular.",
+    t1:"“Antes tenía 3 yates. Ahora tengo 2.”", t1w:"Ex-CEO (ficticio)",
+    t2:"“Chad nunca se toma vacaciones. No sabe lo que es eso.”", t2w:"Miembro imaginario del consejo",
+    t3:"“¡Sinergia!”", t3w:"Chad Pivot, hablando de sí mismo",
+    t_fine:"Todos los testimonios son inventados. Todas las personas citadas son ficticias.",
+    price_title:"Un único precio.",
+    p_big:"1 café ☕",
+    p1:"Frases de moda ilimitadas", p2:"Cero acciones", p3:"Correos de despido no incluidos",
+    p_btn:"Donar en Ko-fi",
+    p_notice:"⚠️ Esto es una donación voluntaria para apoyar un proyecto de broma, no una compra. No recibes ningún producto ni servicio, solo nuestro agradecimiento y quizá una sonrisa. En esta web no se vende nada.",
+    foot1:"PARODIA. Chad Pivot es un personaje ficticio y esta es una web de broma.",
+    foot2:"Sin relación con ninguna empresa, persona o producto real. No se usa IA real. Cualquier parecido con jefes reales es pura sinergia.",
+    foot3:"© Chad Pivot. Puede contener frases de moda. No aprobado por ningún consejo de administración."
+  }
+};
+
+function toggleTheme() {
+  const dark = document.documentElement.getAttribute("data-theme") === "dark";
+  if (dark) document.documentElement.removeAttribute("data-theme");
+  else document.documentElement.setAttribute("data-theme", "dark");
+  try { localStorage.setItem("chad-theme", dark ? "light" : "dark"); } catch (e) {}
+}
+function setLang(l) {
+  document.documentElement.lang = l;
+  document.getElementById("b-en").classList.toggle("on", l === "en");
+  document.getElementById("b-es").classList.toggle("on", l === "es");
+  document.querySelectorAll("[data-i18n]").forEach(el => { el.textContent = T[l][el.dataset.i18n]; });
+}
+setLang("en");
+
+const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) e.target.classList.add("in"); }), { threshold: .12 });
+document.querySelectorAll(".fade").forEach(el => io.observe(el));
+</script>
+</body>
+</html>

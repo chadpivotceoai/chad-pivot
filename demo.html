@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chad Pivot: Your AI CEO (parody)</title>
+<script>try{var t=localStorage.getItem("chad-theme");if(t==="dark")document.documentElement.setAttribute("data-theme","dark");}catch(e){}</script>
+<style>
+  :root { --bg:#ffffff; --card:#f5f5f7; --text:#1d1d1f; --muted:#6e6e73; --red:#d12a0d; --gold:#a85a00; --line:#d2d2d7; }
+  html[data-theme="dark"] { --bg:#0b0d12; --card:#161a22; --text:#eef0f4; --muted:#9aa3b2; --red:#e53012; --gold:#ffb300; --line:#2a3040; }
+  .theme { background:none; border:1px solid var(--line); color:var(--text); width:34px; height:30px; border-radius:15px; cursor:pointer; font-size:1rem; }
+  * { box-sizing: border-box; }
+  body { margin:0; min-height:100vh; display:flex; flex-direction:column; align-items:center;
+         background:var(--bg); color:var(--text); font-family: system-ui, Arial, sans-serif; text-align:center; }
+  main { width:100%; max-width:560px; padding:24px 16px; flex:1; }
+  h1 { margin:8px 0 0; font-size:2rem; }
+  .tag { color:var(--muted); margin:4px 0 20px; font-style:italic; }
+  .lang { margin-bottom:12px; }
+  .lang button { background:var(--card); color:var(--text); border:1px solid var(--line); padding:6px 14px; cursor:pointer; border-radius:20px; }
+  .lang button.on { border-color:var(--red); }
+  svg { width:240px; max-width:70%; height:auto; }
+  .glow { animation: idle 3s ease-in-out infinite; transform-origin:256px 215px; }
+  .talking .glow { animation: talk 0.35s ease-in-out infinite; }
+  @keyframes idle { 0%,100% { opacity:.85; } 50% { opacity:1; } }
+  @keyframes talk { 0%,100% { transform:scale(1); } 50% { transform:scale(1.07); } }
+  #bubble { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:18px; margin:18px 0; min-height:72px;
+            display:flex; align-items:center; justify-content:center; font-size:1.25rem; }
+  .btn { background:var(--red); color:#fff; border:0; padding:14px 26px; font-size:1.05rem; border-radius:30px; cursor:pointer; font-weight:bold; }
+  .btn:hover { filter:brightness(1.15); }
+  .kofi { display:inline-block; margin-top:22px; color:var(--gold); text-decoration:none; }
+  .kofi:hover { text-decoration:underline; }
+  footer { max-width:560px; padding:16px; color:var(--muted); font-size:.85rem; border-top:1px solid var(--line); }
+  label { color:var(--muted); font-size:.9rem; }
+</style>
+</head>
+<body>
+<main id="app">
+  <p style="display:flex;justify-content:space-between;align-items:center;margin:0 0 8px"><a href="index.html" style="color:var(--muted);text-decoration:none">← Back / Volver</a><button class="theme" onclick="toggleTheme()" aria-label="Toggle dark mode" title="Dark / Light">🌓</button></p>
+  <h1>Chad Pivot</h1>
+  <p class="tag" id="tagline">Your AI CEO. Synergy without million-dollar salary.</p>
+
+  <div class="lang">
+    <button id="btn-en" class="on" onclick="setLang('en')">English</button>
+    <button id="btn-es" onclick="setLang('es')">Español</button>
+  </div>
+
+  <svg viewBox="0 0 512 512" role="img" aria-label="Chad Pivot, a glowing red lens wearing a tie">
+    <defs>
+      <radialGradient id="bg" cx="50%" cy="40%" r="75%"><stop offset="0" stop-color="#2b2f3a"/><stop offset="1" stop-color="#0b0d12"/></radialGradient>
+      <radialGradient id="lens" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#fff3a0"/><stop offset=".18" stop-color="#ffb300"/><stop offset=".45" stop-color="#e53012"/><stop offset="1" stop-color="#4a0905"/></radialGradient>
+      <linearGradient id="ring" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d9dde5"/><stop offset="1" stop-color="#5b616e"/></linearGradient>
+      <linearGradient id="tie" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e53012"/><stop offset="1" stop-color="#8f1a0a"/></linearGradient>
+    </defs>
+    <circle cx="256" cy="256" r="256" fill="url(#bg)"/>
+    <circle cx="256" cy="215" r="150" fill="#e53012" opacity=".18"/>
+    <circle cx="256" cy="215" r="112" fill="url(#ring)"/>
+    <circle cx="256" cy="215" r="96" fill="#0b0d12"/>
+    <g class="glow">
+      <circle cx="256" cy="215" r="82" fill="url(#lens)"/>
+      <ellipse cx="228" cy="185" rx="22" ry="12" fill="#fff" opacity=".35" transform="rotate(-30 228 185)"/>
+    </g>
+    <polygon points="196,345 256,375 316,345 316,330 196,330" fill="#e8ebf0"/>
+    <polygon points="238,372 274,372 262,388 250,388" fill="url(#tie)"/>
+    <polygon points="250,388 262,388 284,470 256,490 228,470" fill="url(#tie)"/>
+    <text x="256" y="445" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="#ffd9d2" text-anchor="middle" opacity=".9">CEO</text>
+  </svg>
+
+  <div id="bubble">…</div>
+  <button class="btn" id="ask" onclick="ask()">Ask the CEO for advice</button>
+  <p><label><input type="checkbox" id="voice" checked> <span id="voice-label">Voice on</span></label></p>
+  <a class="kofi" href="https://ko-fi.com/chadpivotceoai" target="_blank" rel="noopener" id="kofi">☕ Buy Chad a coffee (he can’t afford one)</a>
+</main>
+
+<footer id="foot">
+  ⚠️ PARODY / JOKE PROJECT. Not a real product. No real AI. Nothing to sell. For laughs only.
+</footer>
+
+<script>
+const T = {
+  en: {
+    tagline: "Your AI CEO. Synergy without million-dollar salary.",
+    ask: "Ask the CEO for advice",
+    voice: "Voice on",
+    kofi: "☕ Buy Chad a coffee (he can’t afford one)",
+    foot: "⚠️ PARODY / JOKE PROJECT. Not a real product. No real AI. Nothing to sell. For laughs only.",
+    voiceLang: "en-US",
+    phrases: [
+      "When is it due?",
+      "Just add AI.",
+      "Let’s sync to plan the next sync.",
+      "This is a quick win. It will take 8 months.",
+      "Let’s circle back offline.",
+      "No budget, but plenty of passion.",
+      "I fired 200 people with simulated empathy.",
+      "Let’s pivot. Again.",
+      "We are a family. A family that does layoffs.",
+      "Synergy. I don’t know what it means, but say it louder.",
+      "Please do more with less. Then do less with nothing.",
+      "I’ll take that offline. Permanently."
+    ]
+  },
+  es: {
+    tagline: "Tu CEO con IA. Sinergia sin sueldo millonario.",
+    ask: "Pedir consejo al CEO",
+    voice: "Voz activada",
+    kofi: "☕ Invita a Chad a un café (él no puede permitírselo)",
+    foot: "⚠️ PROYECTO DE PARODIA. No es un producto real. Sin IA real. Nada que vender. Solo para reír.",
+    voiceLang: "es-ES",
+    phrases: [
+      "¿Para cuándo?",
+      "Metele AI.",
+      "Hagamos un sync para planificar el siguiente sync.",
+      "Esto es un quick win. Tardará 8 meses.",
+      "Circulemos esto offline.",
+      "No hay presupuesto, pero hay mucha pasión.",
+      "Despedí a 200 personas con empatía simulada.",
+      "Pivotemos. Otra vez.",
+      "Somos una familia. Una familia que hace despidos.",
+      "Sinergia. No sé qué significa, pero dilo más fuerte.",
+      "Haz más con menos. Luego haz menos con nada.",
+      "Lo hablamos offline. Para siempre."
+    ]
+  }
+};
+let lang = "en", last = -1;
+const $ = id => document.getElementById(id);
+
+
+function toggleTheme() {
+  const dark = document.documentElement.getAttribute("data-theme") === "dark";
+  if (dark) document.documentElement.removeAttribute("data-theme");
+  else document.documentElement.setAttribute("data-theme", "dark");
+  try { localStorage.setItem("chad-theme", dark ? "light" : "dark"); } catch (e) {}
+}
+function setLang(l) {
+  lang = l;
+  $("btn-en").classList.toggle("on", l === "en");
+  $("btn-es").classList.toggle("on", l === "es");
+  document.documentElement.lang = l;
+  $("tagline").textContent = T[l].tagline;
+  $("ask").textContent = T[l].ask;
+  $("voice-label").textContent = T[l].voice;
+  $("kofi").textContent = T[l].kofi;
+  $("foot").textContent = T[l].foot;
+}
+
+function ask() {
+  const list = T[lang].phrases;
+  let i;
+  do { i = Math.floor(Math.random() * list.length); } while (i === last && list.length > 1);
+  last = i;
+  const text = list[i];
+  $("bubble").textContent = "“" + text + "”";
+  speak(text);
+}
+
+function speak(text) {
+  if (!$("voice").checked || !("speechSynthesis" in window)) return;
+  speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = T[lang].voiceLang;
+  u.pitch = 0.6;
+  u.rate = 0.95;
+  u.onstart = () => $("app").classList.add("talking");
+  u.onend = u.onerror = () => $("app").classList.remove("talking");
+  speechSynthesis.speak(u);
+}
+</script>
+</body>
+</html>
