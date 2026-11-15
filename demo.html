@@ -18,7 +18,7 @@
   .lang { margin-bottom:12px; }
   .lang button { background:var(--card); color:var(--text); border:1px solid var(--line); padding:6px 14px; cursor:pointer; border-radius:20px; }
   .lang button.on { border-color:var(--red); }
-  svg { width:240px; max-width:70%; height:auto; }
+  svg { width:240px; max-width:70%; height:auto; margin-top:32px; }
   .glow { animation: idle 3s ease-in-out infinite; transform-origin:256px 215px; }
   .talking .glow { animation: talk 0.35s ease-in-out infinite; }
   @keyframes idle { 0%,100% { opacity:.85; } 50% { opacity:1; } }
@@ -31,6 +31,7 @@
   .kofi:hover { text-decoration:underline; }
   footer { max-width:560px; padding:16px; color:var(--muted); font-size:.85rem; border-top:1px solid var(--line); }
   label { color:var(--muted); font-size:.9rem; }
+  select { background:var(--card); color:var(--text); border:1px solid var(--line); border-radius:10px; padding:6px 10px; max-width:100%; }
 </style>
 </head>
 <body>
@@ -42,7 +43,9 @@
   <div class="lang">
     <button id="btn-en" class="on" onclick="setLang('en')">English</button>
     <button id="btn-es" onclick="setLang('es')">Español</button>
+    <label style="margin-left:10px"><input type="checkbox" id="voice" checked> <span id="voice-label">Voice on</span></label>
   </div>
+  <p id="voice-pick" style="display:none;margin:0 0 12px"><label><span id="voice-sel-label">Voice:</span> <select id="voiceSel" onchange="saveVoice()" aria-label="Voice"></select></label></p>
 
   <svg viewBox="0 0 512 512" role="img" aria-label="Chad Pivot, a glowing red lens wearing a tie">
     <defs>
@@ -67,7 +70,6 @@
 
   <div id="bubble">…</div>
   <button class="btn" id="ask" onclick="ask()">Ask the CEO for advice</button>
-  <p><label><input type="checkbox" id="voice" checked> <span id="voice-label">Voice on</span></label></p>
   <a class="kofi" href="https://ko-fi.com/chadpivotceoai" target="_blank" rel="noopener" id="kofi">☕ Buy Chad a coffee (he can’t afford one)</a>
 </main>
 
@@ -81,6 +83,7 @@ const T = {
     tagline: "Your AI CEO. Synergy without million-dollar salary.",
     ask: "Ask the CEO for advice",
     voice: "Voice on",
+    voiceLabel: "Voice:",
     kofi: "☕ Buy Chad a coffee (he can’t afford one)",
     foot: "⚠️ PARODY / JOKE PROJECT. Not a real product. No real AI. Nothing to sell. For laughs only.",
     voiceLang: "en-US",
@@ -103,6 +106,7 @@ const T = {
     tagline: "Tu CEO con IA. Sinergia sin sueldo millonario.",
     ask: "Pedir consejo al CEO",
     voice: "Voz activada",
+    voiceLabel: "Voz:",
     kofi: "☕ Invita a Chad a un café (él no puede permitírselo)",
     foot: "⚠️ PROYECTO DE PARODIA. No es un producto real. Sin IA real. Nada que vender. Solo para reír.",
     voiceLang: "es-ES",
@@ -132,6 +136,35 @@ function toggleTheme() {
   else document.documentElement.setAttribute("data-theme", "dark");
   try { localStorage.setItem("chad-theme", dark ? "light" : "dark"); } catch (e) {}
 }
+
+function voicesForLang() {
+  if (!("speechSynthesis" in window)) return [];
+  return speechSynthesis.getVoices().filter(v => v.lang.toLowerCase().startsWith(lang));
+}
+function currentVoice() {
+  const name = $("voiceSel").value;
+  return speechSynthesis.getVoices().find(v => v.name === name) || null;
+}
+function saveVoice() {
+  try { localStorage.setItem("chad-voice-" + lang, $("voiceSel").value); } catch (e) {}
+}
+function fillVoices() {
+  const sel = $("voiceSel");
+  const list = voicesForLang();
+  sel.innerHTML = "";
+  list.forEach(v => {
+    const o = document.createElement("option");
+    o.value = v.name;
+    o.textContent = v.name;
+    sel.appendChild(o);
+  });
+  try {
+    const saved = localStorage.getItem("chad-voice-" + lang);
+    if (saved && list.some(v => v.name === saved)) sel.value = saved;
+  } catch (e) {}
+  $("voice-pick").style.display = list.length > 0 ? "" : "none";
+}
+if ("speechSynthesis" in window) { speechSynthesis.onvoiceschanged = fillVoices; }
 function setLang(l) {
   lang = l;
   $("btn-en").classList.toggle("on", l === "en");
@@ -140,8 +173,10 @@ function setLang(l) {
   $("tagline").textContent = T[l].tagline;
   $("ask").textContent = T[l].ask;
   $("voice-label").textContent = T[l].voice;
+  $("voice-sel-label").textContent = T[l].voiceLabel;
   $("kofi").textContent = T[l].kofi;
   $("foot").textContent = T[l].foot;
+  fillVoices();
 }
 
 function ask() {
@@ -159,12 +194,15 @@ function speak(text) {
   speechSynthesis.cancel();
   const u = new SpeechSynthesisUtterance(text);
   u.lang = T[lang].voiceLang;
+  const v = currentVoice();
+  if (v) u.voice = v;
   u.pitch = 0.6;
   u.rate = 0.95;
   u.onstart = () => $("app").classList.add("talking");
   u.onend = u.onerror = () => $("app").classList.remove("talking");
   speechSynthesis.speak(u);
 }
+fillVoices();
 </script>
 </body>
 </html>
