@@ -20,6 +20,8 @@
   .lang button { background:var(--card); color:var(--text); border:1px solid var(--line); padding:6px 14px; cursor:pointer; border-radius:20px; }
   .lang button.on { border-color:var(--red); }
   svg { width:240px; max-width:70%; height:auto; margin-top:32px; }
+  #chad { transition: filter .3s; }
+  #skin-pick { margin:0 0 12px; }
   .glow { animation: idle 3s ease-in-out infinite; transform-origin:256px 215px; }
   .talking .glow { animation: talk 0.35s ease-in-out infinite; }
   @keyframes idle { 0%,100% { opacity:.85; } 50% { opacity:1; } }
@@ -48,7 +50,9 @@
   </div>
   <p id="voice-pick" style="display:none;margin:0 0 12px"><label><span id="voice-sel-label">Voice:</span> <select id="voiceSel" onchange="saveVoice()" aria-label="Voice"></select></label></p>
 
-  <svg viewBox="0 0 512 512" role="img" aria-label="Chad Pivot, a glowing red lens wearing a tie">
+  <p id="skin-pick"><label><span id="skin-label">Skin:</span> <select id="skinSel" onchange="setSkin(this.value)" aria-label="Skin"></select></label></p>
+
+  <svg id="chad" viewBox="0 0 512 512" role="img" aria-label="Chad Pivot, a glowing red lens wearing a tie">
     <defs>
       <radialGradient id="bg" cx="50%" cy="40%" r="75%"><stop offset="0" stop-color="#2b2f3a"/><stop offset="1" stop-color="#0b0d12"/></radialGradient>
       <radialGradient id="lens" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#fff3a0"/><stop offset=".18" stop-color="#ffb300"/><stop offset=".45" stop-color="#e53012"/><stop offset="1" stop-color="#4a0905"/></radialGradient>
@@ -67,6 +71,7 @@
     <polygon points="238,372 274,372 262,388 250,388" fill="url(#tie)"/>
     <polygon points="250,388 262,388 284,470 256,490 228,470" fill="url(#tie)"/>
     <text x="256" y="445" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="#ffd9d2" text-anchor="middle" opacity=".9">CEO</text>
+    <g id="acc"></g>
   </svg>
 
   <div id="bubble">…</div>
@@ -103,6 +108,91 @@ const T = {
 };
 let lang = "en", last = -1;
 const $ = id => document.getElementById(id);
+
+const SKINS = {
+  none: { en:"Classic", es:"Clásico", filter:"none", svg:"" },
+  xmas: { en:"Christmas hat", es:"Gorro navideño", filter:"none", svg:
+    '<path d="M165 128 Q185 40 285 36 Q335 36 348 92 Q354 112 348 128 Z" fill="#d12a0d"/>' +
+    '<rect x="148" y="116" width="216" height="36" rx="18" fill="#fff"/>' +
+    '<circle cx="350" cy="92" r="19" fill="#fff"/>' },
+  king: { en:"King / Crown", es:"Rey / Corona", filter:"none", svg:
+    '<path d="M176 132 L190 56 L224 98 L256 44 L288 98 L322 56 L336 132 Z" fill="#ffc400" stroke="#a85a00" stroke-width="4" stroke-linejoin="round"/>' +
+    '<rect x="176" y="120" width="160" height="22" rx="4" fill="#ffb300" stroke="#a85a00" stroke-width="4"/>' +
+    '<circle cx="190" cy="52" r="8" fill="#d12a0d"/><circle cx="256" cy="40" r="9" fill="#2ec4ff"/><circle cx="322" cy="52" r="8" fill="#d12a0d"/>' +
+    '<circle cx="216" cy="131" r="5" fill="#d12a0d"/><circle cx="256" cy="131" r="5" fill="#2ec4ff"/><circle cx="296" cy="131" r="5" fill="#d12a0d"/>' },
+  pixel: { en:"Pixel 8-bit", es:"Pixel 8-bit", filter:"contrast(1.15) saturate(1.2)", get svg() { return pixelChad(); } },
+  party: { en:"Party hat", es:"Gorro de fiesta", filter:"none", svg:
+    '<g transform="rotate(-10 256 125)"><polygon points="256,14 200,130 312,130" fill="#ff4fa3"/>' +
+    '<polygon points="256,14 236,130 262,130" fill="#ffd54a"/>' +
+    '<polygon points="226,80 290,80 300,104 216,104" fill="#2ec4ff" opacity=".85"/>' +
+    '<circle cx="256" cy="14" r="12" fill="#ffd54a"/></g>' +
+    '<circle cx="120" cy="90" r="6" fill="#ffd54a"/><circle cx="390" cy="70" r="6" fill="#2ec4ff"/>' +
+    '<circle cx="410" cy="170" r="5" fill="#ff4fa3"/><circle cx="100" cy="200" r="5" fill="#2ec4ff"/>' +
+    '<rect x="140" y="40" width="10" height="5" fill="#ff4fa3" transform="rotate(30 140 40)"/>' +
+    '<rect x="360" y="120" width="10" height="5" fill="#ffd54a" transform="rotate(-40 360 120)"/>' },
+  synth: { en:"Retro 80s", es:"Retro 80s", filter:"hue-rotate(270deg) saturate(1.4)", svg:
+    '<defs><linearGradient id="sg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff3cac"/><stop offset="1" stop-color="#2b86c5"/></linearGradient></defs>' +
+    '<rect x="170" y="188" width="172" height="54" rx="12" fill="#0b0d12" stroke="url(#sg)" stroke-width="4"/>' +
+    '<rect x="180" y="198" width="152" height="34" rx="6" fill="url(#sg)" opacity=".75"/>' +
+    '<line x1="190" y1="206" x2="320" y2="206" stroke="#fff" stroke-width="2" opacity=".5"/>' +
+    '<line x1="190" y1="218" x2="320" y2="218" stroke="#fff" stroke-width="2" opacity=".4"/>' +
+    '<rect x="160" y="150" width="192" height="14" rx="7" fill="#ff3cac"/>' },
+  vintage: { en:"Retro 1920s", es:"Retro años 20", filter:"sepia(1) contrast(1.1)", svg:
+    '<rect x="206" y="26" width="100" height="96" rx="6" fill="#151515"/>' +
+    '<rect x="206" y="92" width="100" height="14" fill="#8f1a0a"/>' +
+    '<ellipse cx="256" cy="122" rx="88" ry="14" fill="#151515"/>' +
+    '<circle cx="304" cy="236" r="32" fill="none" stroke="#ffd54a" stroke-width="5"/>' +
+    '<path d="M336 236 Q350 300 316 360" fill="none" stroke="#ffd54a" stroke-width="3"/>' }
+};
+let skin = "none";
+function inPoly(x, y, p) {
+  let c = false;
+  for (let i = 0, j = p.length - 1; i < p.length; j = i++) {
+    const [xi, yi] = p[i], [xj, yj] = p[j];
+    if ((yi > y) !== (yj > y) && x < (xj - xi) * (y - yi) / (yj - yi) + xi) c = !c;
+  }
+  return c;
+}
+function pixelChad() {
+  const N = 32, S = 512 / N;
+  const collar = [[196,345],[256,375],[316,345],[316,330],[196,330]];
+  const knot = [[238,372],[274,372],[262,388],[250,388]];
+  const tie = [[250,388],[262,388],[284,470],[256,490],[228,470]];
+  let out = '<g shape-rendering="crispEdges">';
+  for (let r = 0; r < N; r++) for (let c = 0; c < N; c++) {
+    const x = c * S + S / 2, y = r * S + S / 2;
+    if (Math.hypot(x - 256, y - 256) > 264) continue;
+    const d = Math.hypot(x - 256, y - 215);
+    let f = (r + c) % 2 ? "#161a22" : "#0f1218";
+    if (d < 150 && d >= 112) f = "#3a1410";
+    if (d < 112) f = "#9aa0ac";
+    if (d < 96) f = "#0b0d12";
+    if (d < 82) f = d < 16 ? "#fff3a0" : d < 38 ? "#ffb300" : d < 62 ? "#e53012" : "#7a1008";
+    if (inPoly(x, y, collar)) f = "#e8ebf0";
+    if (inPoly(x, y, knot) || inPoly(x, y, tie)) f = "#e53012";
+    out += '<rect x="' + c * S + '" y="' + r * S + '" width="' + S + '" height="' + S + '" fill="' + f + '"/>';
+  }
+  return out + '</g>';
+}
+function setSkin(k) {
+  if (!SKINS[k]) k = "none";
+  skin = k;
+  $("acc").innerHTML = SKINS[k].svg;
+  $("chad").style.filter = SKINS[k].filter;
+  $("skinSel").value = k;
+  try { localStorage.setItem("chad-skin", k); } catch (e) {}
+}
+function fillSkins() {
+  const sel = $("skinSel");
+  sel.innerHTML = "";
+  Object.keys(SKINS).forEach(k => {
+    const o = document.createElement("option");
+    o.value = k; o.textContent = SKINS[k][lang];
+    sel.appendChild(o);
+  });
+  sel.value = skin;
+  $("skin-label").textContent = lang === "es" ? "Skin:" : "Skin:";
+}
 
 
 function toggleTheme() {
@@ -152,6 +242,7 @@ function setLang(l) {
   $("kofi").textContent = T[l].kofi;
   $("foot").textContent = T[l].foot;
   fillVoices();
+  fillSkins();
 }
 
 function ask() {
@@ -178,6 +269,8 @@ function speak(text) {
   speechSynthesis.speak(u);
 }
 fillVoices();
+fillSkins();
+try { setSkin(localStorage.getItem("chad-skin") || "none"); } catch (e) { setSkin("none"); }
 </script>
 </body>
 </html>
