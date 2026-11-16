@@ -10,8 +10,6 @@
 Chad Pivot is a fictional AI CEO who replaces expensive executives with the power of buzzwords.
 Chad Pivot es un CEO ficticio con IA que sustituye a directivos caros con el poder de las frases de PowerPoint.
 
-Coming soon / Próximamente: 🎬 demo, 📊 PowerPoint generator, 📼 retro 80s/90s CEO skins.
-
 ## Support the joke / Apoya la broma
 
 ☕ [ko-fi.com/chadpivotceoai](https://ko-fi.com/chadpivotceoai)
