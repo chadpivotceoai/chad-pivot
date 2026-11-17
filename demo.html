@@ -39,18 +39,18 @@
 </head>
 <body>
 <main id="app">
-  <p style="display:flex;justify-content:space-between;align-items:center;margin:0 0 8px"><a href="index.html" style="color:var(--muted);text-decoration:none">← Back / Volver</a><button class="theme" onclick="toggleTheme()" aria-label="Toggle dark mode" title="Dark / Light">🌓</button></p>
+  <p style="display:flex;justify-content:space-between;align-items:center;margin:0 0 8px"><a href="index.html" style="color:var(--muted);text-decoration:none">← Back / Volver</a><button class="theme" onclick="toggleTheme()" data-goatcounter-click="theme-toggle" aria-label="Toggle dark mode" title="Dark / Light">🌓</button></p>
   <h1>Chad Pivot</h1>
   <p class="tag" id="tagline">Your AI CEO. Synergy without million-dollar salary.</p>
 
   <div class="lang">
-    <button id="btn-en" class="on" onclick="setLang('en')">English</button>
-    <button id="btn-es" onclick="setLang('es')">Español</button>
+    <button id="btn-en" class="on" onclick="setLang('en')" data-goatcounter-click="lang-en">English</button>
+    <button id="btn-es" onclick="setLang('es')" data-goatcounter-click="lang-es">Español</button>
     <label style="margin-left:10px"><input type="checkbox" id="voice" checked> <span id="voice-label">Voice on</span></label>
   </div>
   <p id="voice-pick" style="display:none;margin:0 0 12px"><label><span id="voice-sel-label">Voice:</span> <select id="voiceSel" onchange="saveVoice()" aria-label="Voice"></select></label></p>
 
-  <p id="skin-pick"><label><span id="skin-label">Skin:</span> <select id="skinSel" onchange="setSkin(this.value)" aria-label="Skin"></select></label></p>
+  <p id="skin-pick"><label><span id="skin-label">Skin:</span> <select id="skinSel" onchange="setSkin(this.value); track('skin-' + this.value)" aria-label="Skin"></select></label></p>
 
   <svg id="chad" viewBox="0 0 512 512" role="img" aria-label="Chad Pivot, a glowing red lens wearing a tie">
     <defs>
@@ -75,13 +75,14 @@
   </svg>
 
   <div id="bubble">…</div>
-  <button class="btn" id="ask" onclick="ask()">Ask the CEO for advice</button>
-  <a class="kofi" href="https://ko-fi.com/chadpivotceoai" target="_blank" rel="noopener" id="kofi">☕ Buy Chad a coffee (he can’t afford one)</a>
+  <button class="btn" id="ask" onclick="ask()" data-goatcounter-click="demo-ask">Ask the CEO for advice</button>
+  <a class="kofi" href="https://ko-fi.com/chadpivotceoai" target="_blank" rel="noopener" id="kofi" data-goatcounter-click="kofi-demo">☕ Buy Chad a coffee (he can’t afford one)</a>
 </main>
 
 <footer id="foot">
   ⚠️ PARODY / JOKE PROJECT. Not a real product. No real AI. Nothing to sell. For laughs only.
 </footer>
+<div id="privacy" style="max-width:560px;padding:0 16px 24px;color:var(--muted);font-size:.8rem;text-align:center">This site uses GoatCounter, an anonymous analytics tool with no cookies. No personal data is collected.</div>
 
 <script>
 const T = {
@@ -230,6 +231,10 @@ function fillVoices() {
   $("voice-pick").style.display = list.length > 0 ? "" : "none";
 }
 if ("speechSynthesis" in window) { speechSynthesis.onvoiceschanged = fillVoices; }
+const PRIVACY = {
+  en: "This site uses GoatCounter, an anonymous analytics tool with no cookies. No personal data is collected.",
+  es: "Esta web usa GoatCounter, una analítica anónima y sin cookies. No se recoge ningún dato personal."
+};
 function setLang(l) {
   lang = l;
   $("btn-en").classList.toggle("on", l === "en");
@@ -241,6 +246,7 @@ function setLang(l) {
   $("voice-sel-label").textContent = T[l].voiceLabel;
   $("kofi").textContent = T[l].kofi;
   $("foot").textContent = T[l].foot;
+  $("privacy").textContent = PRIVACY[l];
   fillVoices();
   fillSkins();
 }
@@ -272,5 +278,18 @@ fillVoices();
 fillSkins();
 try { setSkin(localStorage.getItem("chad-skin") || "none"); } catch (e) { setSkin("none"); }
 </script>
+<!-- Anonymous, cookieless analytics (GoatCounter). If your GoatCounter code is not "chadpivot", change it below. -->
+<script>
+window.goatcounter = {
+  referrer: function () {
+    var g = window.goatcounter;
+    return (g.get_query && (g.get_query("ref") || g.get_query("utm_source"))) || document.referrer;
+  }
+};
+function track(name) {
+  try { if (window.goatcounter && window.goatcounter.count) window.goatcounter.count({ path: name, title: name, event: true }); } catch (e) {}
+}
+</script>
+<script data-goatcounter="https://chadpivot.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>
 </html>

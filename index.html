@@ -86,9 +86,9 @@
     <a href="#pricing" data-i18n="nav_pricing"></a>
   </span>
   <span class="right">
-    <button class="theme" onclick="toggleTheme()" aria-label="Toggle dark mode" title="Dark / Light">🌓</button>
-    <span class="lang"><button id="b-en" class="on" onclick="setLang('en')">EN</button> <button id="b-es" onclick="setLang('es')">ES</button></span>
-    <a class="btn ghost small" href="https://ko-fi.com/chadpivotceoai" target="_blank" rel="noopener" data-i18n="nav_kofi"></a>
+    <button class="theme" onclick="toggleTheme()" data-goatcounter-click="theme-toggle" aria-label="Toggle dark mode" title="Dark / Light">🌓</button>
+    <span class="lang"><button id="b-en" class="on" onclick="setLang('en')" data-goatcounter-click="lang-en">EN</button> <button id="b-es" onclick="setLang('es')" data-goatcounter-click="lang-es">ES</button></span>
+    <a class="btn ghost small" href="https://ko-fi.com/chadpivotceoai" target="_blank" rel="noopener" data-goatcounter-click="kofi-nav" data-i18n="nav_kofi"></a>
     <a class="btn red small" href="demo.html" data-i18n="demo"></a>
   </span>
 </nav>
@@ -100,7 +100,7 @@
   <p class="sub" data-i18n="hero_p"></p>
   <div class="cta">
     <a class="btn red" href="demo.html" data-i18n="demo"></a>
-    <a class="btn ghost" href="https://ko-fi.com/chadpivotceoai" target="_blank" rel="noopener" data-i18n="donate"></a>
+    <a class="btn ghost" href="https://ko-fi.com/chadpivotceoai" target="_blank" rel="noopener" data-goatcounter-click="kofi-hero" data-i18n="donate"></a>
   </div>
   <div class="badge" data-i18n="badge"></div>
 
@@ -189,7 +189,7 @@
       <li data-i18n="p2"></li>
       <li data-i18n="p3"></li>
     </ul>
-    <a class="btn red" href="https://ko-fi.com/chadpivotceoai" target="_blank" rel="noopener" data-i18n="p_btn"></a>
+    <a class="btn red" href="https://ko-fi.com/chadpivotceoai" target="_blank" rel="noopener" data-goatcounter-click="kofi-pricing" data-i18n="p_btn"></a>
   </div>
   <div class="notice" data-i18n="p_notice"></div>
 </section>
@@ -200,10 +200,11 @@
     <p data-i18n="foot2"></p>
     <p>
       <a href="demo.html">Demo</a> ·
-      <a href="https://ko-fi.com/chadpivotceoai" target="_blank" rel="noopener">Ko-fi</a> ·
-      <a href="https://github.com/chadpivotceoai/chad-pivot" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://ko-fi.com/chadpivotceoai" target="_blank" rel="noopener" data-goatcounter-click="kofi-footer">Ko-fi</a> ·
+      <a href="https://github.com/chadpivotceoai/chad-pivot" target="_blank" rel="noopener" data-goatcounter-click="github">GitHub</a>
     </p>
     <p data-i18n="foot3"></p>
+    <p data-i18n="foot4"></p>
   </div>
 </footer>
 
@@ -242,7 +243,8 @@ const T = {
     p_notice:"⚠️ This is a voluntary donation to support a joke project, not a purchase. You receive no product and no service, only our gratitude and maybe a smile. Nothing on this site is for sale.",
     foot1:"PARODY. Chad Pivot is a fictional character and this is a joke website.",
     foot2:"Not affiliated with any real company, person, or product. No real AI is used. Any resemblance to real bosses is pure synergy.",
-    foot3:"© Chad Pivot. May contain buzzwords. Not approved by any board of directors."
+    foot3:"© Chad Pivot. May contain buzzwords. Not approved by any board of directors.",
+    foot4:"This site uses GoatCounter, an anonymous analytics tool with no cookies. No personal data is collected."
   },
   es: {
     banner:"⚠️ WEB DE PARODIA. Chad Pivot no es un producto real, no hay IA real y aquí no se vende nada.",
@@ -277,7 +279,8 @@ const T = {
     p_notice:"⚠️ Esto es una donación voluntaria para apoyar un proyecto de broma, no una compra. No recibes ningún producto ni servicio, solo nuestro agradecimiento y quizá una sonrisa. En esta web no se vende nada.",
     foot1:"PARODIA. Chad Pivot es un personaje ficticio y esta es una web de broma.",
     foot2:"Sin relación con ninguna empresa, persona o producto real. No se usa IA real. Cualquier parecido con jefes reales es pura sinergia.",
-    foot3:"© Chad Pivot. Puede contener frases de moda. No aprobado por ningún consejo de administración."
+    foot3:"© Chad Pivot. Puede contener frases de moda. No aprobado por ningún consejo de administración.",
+    foot4:"Esta web usa GoatCounter, una analítica anónima y sin cookies. No se recoge ningún dato personal."
   }
 };
 
@@ -298,5 +301,18 @@ setLang("en");
 const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) e.target.classList.add("in"); }), { threshold: .12 });
 document.querySelectorAll(".fade").forEach(el => io.observe(el));
 </script>
+<!-- Anonymous, cookieless analytics (GoatCounter). If your GoatCounter code is not "chadpivot", change it below. -->
+<script>
+window.goatcounter = {
+  referrer: function () {
+    var g = window.goatcounter;
+    return (g.get_query && (g.get_query("ref") || g.get_query("utm_source"))) || document.referrer;
+  }
+};
+function track(name) {
+  try { if (window.goatcounter && window.goatcounter.count) window.goatcounter.count({ path: name, title: name, event: true }); } catch (e) {}
+}
+</script>
+<script data-goatcounter="https://chadpivot.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>
 </html>
