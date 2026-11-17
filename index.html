@@ -59,6 +59,10 @@
   .av { width:38px; height:38px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; background:var(--line); font-size:1.15rem; flex:none; }
   .av.chad { background:radial-gradient(circle at 50% 50%, #fff3a0 0, #ffb300 14%, #e53012 42%, #4a0905 100%); border:3px solid #7a808c; }
   .fine { color:var(--muted); font-size:.85rem; margin-top:20px; }
+  .channel { display:flex; flex-wrap:wrap; align-items:center; gap:18px; max-width:620px; margin:0 auto; text-align:left; }
+  .channel .ico { width:56px; height:56px; flex:none; }
+  .channel .info { flex:1; min-width:200px; }
+  .channel h3 { margin:0 0 4px; }
   .price { background:var(--card); border:1px solid var(--line); border-radius:24px; max-width:420px; margin:0 auto; padding:36px 28px; }
   .price .big { font-size:3rem; font-weight:700; margin:6px 0 14px; }
   .price ul { list-style:none; padding:0; margin:0 0 24px; color:var(--muted); }
@@ -83,6 +87,7 @@
     <a href="#specs" data-i18n="nav_specs"></a>
     <a href="#compare" data-i18n="nav_compare"></a>
     <a href="#reviews" data-i18n="nav_reviews"></a>
+    <a href="#channels" data-i18n="nav_channels"></a>
     <a href="#pricing" data-i18n="nav_pricing"></a>
   </span>
   <span class="right">
@@ -179,6 +184,22 @@
   <p class="fine" data-i18n="t_fine"></p>
 </section>
 
+<section id="channels" class="fade">
+  <h2 class="title" data-i18n="ch_title"></h2>
+  <div class="card channel">
+    <svg class="ico" viewBox="0 0 56 56" aria-hidden="true">
+      <rect x="2" y="10" width="52" height="36" rx="11" fill="#e53012"/>
+      <polygon points="23,19 23,37 39,28" fill="#fff"/>
+    </svg>
+    <div class="info">
+      <h3 data-i18n="ch_yt_name"></h3>
+      <p data-i18n="ch_yt_text"></p>
+    </div>
+    <a class="btn red small" href="https://www.youtube.com/@ChadPivot" target="_blank" rel="noopener" data-goatcounter-click="youtube-en" data-i18n="ch_yt_btn"></a>
+  </div>
+  <p class="fine" data-i18n="ch_soon"></p>
+</section>
+
 <section id="pricing" class="fade">
   <h2 class="title" data-i18n="price_title"></h2>
   <div class="price">
@@ -212,7 +233,7 @@
 const T = {
   en: {
     banner:"⚠️ PARODY WEBSITE. Chad Pivot is not a real product, there is no real AI, and nothing here is for sale.",
-    nav_kofi:"Donate ☕", nav_features:"Features", nav_specs:"Specs", nav_compare:"Compare", nav_reviews:"Reviews", nav_pricing:"Pricing",
+    nav_kofi:"Donate ☕", nav_features:"Features", nav_specs:"Specs", nav_compare:"Compare", nav_reviews:"Reviews", nav_channels:"Channels", nav_pricing:"Pricing",
     demo:"See online demo", donate:"Donate a coffee ☕",
     intro:"Introducing", tagline:"Leadership, reimagined.",
     hero_p:"The world’s first AI CEO that has never read your email and still has an opinion about it.",
@@ -244,11 +265,16 @@ const T = {
     foot1:"PARODY. Chad Pivot is a fictional character and this is a joke website.",
     foot2:"Not affiliated with any real company, person, or product. No real AI is used. Any resemblance to real bosses is pure synergy.",
     foot3:"© Chad Pivot. May contain buzzwords. Not approved by any board of directors.",
+    ch_title:"Find Chad everywhere.",
+    ch_yt_name:"YouTube · English",
+    ch_yt_text:"A new sketch every Friday. Short, absurd, and 100% parody.",
+    ch_yt_btn:"Watch on YouTube",
+    ch_soon:"More channels coming soon: YouTube in Spanish, TikTok and X.",
     foot4:"This site uses GoatCounter, an anonymous analytics tool with no cookies. No personal data is collected."
   },
   es: {
     banner:"⚠️ WEB DE PARODIA. Chad Pivot no es un producto real, no hay IA real y aquí no se vende nada.",
-    nav_kofi:"Dona ☕", nav_features:"Funciones", nav_specs:"Datos", nav_compare:"Comparar", nav_reviews:"Opiniones", nav_pricing:"Precio",
+    nav_kofi:"Dona ☕", nav_features:"Funciones", nav_specs:"Datos", nav_compare:"Comparar", nav_reviews:"Opiniones", nav_channels:"Canales", nav_pricing:"Precio",
     demo:"Ver demo online", donate:"Dona un café ☕",
     intro:"Presentamos a", tagline:"El liderazgo, reinventado.",
     hero_p:"El primer CEO con IA del mundo que nunca ha leído tu correo y aun así tiene una opinión sobre él.",
@@ -280,6 +306,11 @@ const T = {
     foot1:"PARODIA. Chad Pivot es un personaje ficticio y esta es una web de broma.",
     foot2:"Sin relación con ninguna empresa, persona o producto real. No se usa IA real. Cualquier parecido con jefes reales es pura sinergia.",
     foot3:"© Chad Pivot. Puede contener frases de moda. No aprobado por ningún consejo de administración.",
+    ch_title:"Encuentra a Chad en todas partes.",
+    ch_yt_name:"YouTube · Inglés",
+    ch_yt_text:"Un sketch nuevo cada viernes. Corto, absurdo y 100% parodia.",
+    ch_yt_btn:"Ver en YouTube",
+    ch_soon:"Pronto, más canales: YouTube en español, TikTok y X.",
     foot4:"Esta web usa GoatCounter, una analítica anónima y sin cookies. No se recoge ningún dato personal."
   }
 };
