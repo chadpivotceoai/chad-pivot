@@ -59,6 +59,7 @@
   .av { width:38px; height:38px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; background:var(--line); font-size:1.15rem; flex:none; }
   .av.chad { background:radial-gradient(circle at 50% 50%, #fff3a0 0, #ffb300 14%, #e53012 42%, #4a0905 100%); border:3px solid #7a808c; }
   .fine { color:var(--muted); font-size:.85rem; margin-top:20px; }
+  .channel-list { display:flex; flex-direction:column; gap:16px; }
   .channel { display:flex; flex-wrap:wrap; align-items:center; gap:18px; max-width:620px; margin:0 auto; text-align:left; }
   .channel .ico { width:56px; height:56px; flex:none; }
   .channel .info { flex:1; min-width:200px; }
@@ -186,16 +187,29 @@
 
 <section id="channels" class="fade">
   <h2 class="title" data-i18n="ch_title"></h2>
-  <div class="card channel">
-    <svg class="ico" viewBox="0 0 56 56" aria-hidden="true">
+  <div class="channel-list">
+    <div class="card channel">
+      <svg class="ico" viewBox="0 0 56 56" aria-hidden="true">
       <rect x="2" y="10" width="52" height="36" rx="11" fill="#e53012"/>
       <polygon points="23,19 23,37 39,28" fill="#fff"/>
     </svg>
-    <div class="info">
-      <h3 data-i18n="ch_yt_name"></h3>
-      <p data-i18n="ch_yt_text"></p>
+      <div class="info">
+        <h3 data-i18n="ch_yt_name"></h3>
+        <p data-i18n="ch_yt_text"></p>
+      </div>
+      <a class="btn red small" href="https://www.youtube.com/@ChadPivot" target="_blank" rel="noopener" data-goatcounter-click="youtube-en" data-i18n="ch_yt_btn"></a>
     </div>
-    <a class="btn red small" href="https://www.youtube.com/@ChadPivot" target="_blank" rel="noopener" data-goatcounter-click="youtube-en" data-i18n="ch_yt_btn"></a>
+    <div class="card channel">
+      <svg class="ico" viewBox="0 0 56 56" aria-hidden="true">
+      <rect x="2" y="10" width="52" height="36" rx="11" fill="#e53012"/>
+      <polygon points="23,19 23,37 39,28" fill="#fff"/>
+    </svg>
+      <div class="info">
+        <h3 data-i18n="ch_yt_es_name"></h3>
+        <p data-i18n="ch_yt_es_text"></p>
+      </div>
+      <a class="btn red small" href="https://www.youtube.com/@ChadPivot_ES" target="_blank" rel="noopener" data-goatcounter-click="youtube-es" data-i18n="ch_yt_btn"></a>
+    </div>
   </div>
   <p class="fine" data-i18n="ch_soon"></p>
 </section>
@@ -269,7 +283,9 @@ const T = {
     ch_yt_name:"YouTube · English",
     ch_yt_text:"A new sketch every Friday. Short, absurd, and 100% parody.",
     ch_yt_btn:"Watch on YouTube",
-    ch_soon:"More channels coming soon: YouTube in Spanish, TikTok and X.",
+    ch_yt_es_name:"YouTube · Spanish",
+    ch_yt_es_text:"The same sketches, in Spanish. A new one every Friday.",
+    ch_soon:"More channels coming soon: TikTok and X.",
     foot4:"This site uses GoatCounter, an anonymous analytics tool with no cookies. No personal data is collected."
   },
   es: {
@@ -310,7 +326,9 @@ const T = {
     ch_yt_name:"YouTube · Inglés",
     ch_yt_text:"Un sketch nuevo cada viernes. Corto, absurdo y 100% parodia.",
     ch_yt_btn:"Ver en YouTube",
-    ch_soon:"Pronto, más canales: YouTube en español, TikTok y X.",
+    ch_yt_es_name:"YouTube · Español",
+    ch_yt_es_text:"Los mismos sketches, en español. Uno nuevo cada viernes.",
+    ch_soon:"Pronto, más canales: TikTok y X.",
     foot4:"Esta web usa GoatCounter, una analítica anónima y sin cookies. No se recoge ningún dato personal."
   }
 };
