@@ -60,9 +60,10 @@
   .av.chad { background:radial-gradient(circle at 50% 50%, #fff3a0 0, #ffb300 14%, #e53012 42%, #4a0905 100%); border:3px solid #7a808c; }
   .fine { color:var(--muted); font-size:.85rem; margin-top:20px; }
   .channel-list { display:flex; flex-direction:column; gap:16px; }
-  .channel { display:flex; flex-wrap:wrap; align-items:center; gap:18px; max-width:620px; margin:0 auto; text-align:left; }
+  .channel { display:flex; flex-wrap:wrap; align-items:center; gap:18px; width:100%; max-width:620px; box-sizing:border-box; margin:0 auto; text-align:left; }
   .channel .ico { width:56px; height:56px; flex:none; }
   .channel .info { flex:1; min-width:200px; }
+  .channel .btn { flex:none; min-width:170px; text-align:center; }
   .channel h3 { margin:0 0 4px; }
   .price { background:var(--card); border:1px solid var(--line); border-radius:24px; max-width:420px; margin:0 auto; padding:36px 28px; }
   .price .big { font-size:3rem; font-weight:700; margin:6px 0 14px; }
@@ -210,8 +211,31 @@
       </div>
       <a class="btn red small" href="https://www.youtube.com/@ChadPivot_ES" target="_blank" rel="noopener" data-goatcounter-click="youtube-es" data-i18n="ch_yt_btn"></a>
     </div>
+    <div class="card channel">
+      <svg class="ico" viewBox="0 0 56 56" aria-hidden="true"><rect x="2" y="2" width="52" height="52" rx="13" fill="#111"/><path d="M30 14v18.5a5.5 5.5 0 1 1-5.5-5.5" fill="none" stroke="#25f4ee" stroke-width="4" stroke-linecap="round" transform="translate(-1.5 0)"/><path d="M30 14v18.5a5.5 5.5 0 1 1-5.5-5.5M30 14c1 4.5 4 7 8.5 7.5" fill="none" stroke="#fe2c55" stroke-width="4" stroke-linecap="round" transform="translate(1.5 0)"/><path d="M30 14v18.5a5.5 5.5 0 1 1-5.5-5.5M30 14c1 4.5 4 7 8.5 7.5" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"/></svg>
+      <div class="info">
+        <h3 data-i18n="ch_tt_name"></h3>
+        <p data-i18n="ch_tt_text"></p>
+      </div>
+      <a class="btn red small" href="https://www.tiktok.com/@chadpivotceoai" target="_blank" rel="noopener" data-goatcounter-click="tiktok-en" data-i18n="ch_tt_btn"></a>
+    </div>
+    <div class="card channel">
+      <svg class="ico" viewBox="0 0 56 56" aria-hidden="true"><rect x="2" y="2" width="52" height="52" rx="13" fill="#111"/><path d="M30 14v18.5a5.5 5.5 0 1 1-5.5-5.5" fill="none" stroke="#25f4ee" stroke-width="4" stroke-linecap="round" transform="translate(-1.5 0)"/><path d="M30 14v18.5a5.5 5.5 0 1 1-5.5-5.5M30 14c1 4.5 4 7 8.5 7.5" fill="none" stroke="#fe2c55" stroke-width="4" stroke-linecap="round" transform="translate(1.5 0)"/><path d="M30 14v18.5a5.5 5.5 0 1 1-5.5-5.5M30 14c1 4.5 4 7 8.5 7.5" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"/></svg>
+      <div class="info">
+        <h3 data-i18n="ch_tt_es_name"></h3>
+        <p data-i18n="ch_tt_es_text"></p>
+      </div>
+      <a class="btn red small" href="https://www.tiktok.com/@chadpivotceoaies" target="_blank" rel="noopener" data-goatcounter-click="tiktok-es" data-i18n="ch_tt_btn"></a>
+    </div>
+    <div class="card channel">
+      <svg class="ico" viewBox="0 0 56 56" aria-hidden="true"><rect x="2" y="2" width="52" height="52" rx="13" fill="#111"/><path d="M16 15h7.5l6.6 9.2L38 15h3l-9.5 11 10 15h-7.5l-7-10-8.6 10h-3L24 29.600z" fill="#fff"/></svg>
+      <div class="info">
+        <h3 data-i18n="ch_x_name"></h3>
+        <p data-i18n="ch_x_text"></p>
+      </div>
+      <a class="btn red small" href="https://x.com/chadpivotceoai" target="_blank" rel="noopener" data-goatcounter-click="x" data-i18n="ch_x_btn"></a>
+    </div>
   </div>
-  <p class="fine" data-i18n="ch_soon"></p>
 </section>
 
 <section id="pricing" class="fade">
@@ -236,7 +260,9 @@
     <p>
       <a href="demo.html">Demo</a> ·
       <a href="https://ko-fi.com/chadpivotceoai" target="_blank" rel="noopener" data-goatcounter-click="kofi-footer">Ko-fi</a> ·
-      <a href="https://github.com/chadpivotceoai/chad-pivot" target="_blank" rel="noopener" data-goatcounter-click="github">GitHub</a>
+      <a href="https://github.com/chadpivotceoai/chad-pivot" target="_blank" rel="noopener" data-goatcounter-click="github">GitHub</a> ·
+      <a href="https://www.tiktok.com/@chadpivotceoai" target="_blank" rel="noopener" data-goatcounter-click="tiktok-footer">TikTok</a> ·
+      <a href="https://x.com/chadpivotceoai" target="_blank" rel="noopener" data-goatcounter-click="x-footer">X</a>
     </p>
     <p data-i18n="foot3"></p>
     <p data-i18n="foot4"></p>
@@ -285,7 +311,14 @@ const T = {
     ch_yt_btn:"Watch on YouTube",
     ch_yt_es_name:"YouTube · Spanish",
     ch_yt_es_text:"The same sketches, in Spanish. A new one every Friday.",
-    ch_soon:"More channels coming soon: TikTok and X.",
+    ch_tt_name:"TikTok · English",
+    ch_tt_text:"Quick clips of Chad being Chad. Same parody, smaller screen.",
+    ch_tt_btn:"Watch on TikTok",
+    ch_tt_es_name:"TikTok · Spanish",
+    ch_tt_es_text:"Los clips de Chad, en español.",
+    ch_x_name:"X",
+    ch_x_text:"New sketches, jokes and corporate nonsense.",
+    ch_x_btn:"Follow on X",
     foot4:"This site uses GoatCounter, an anonymous analytics tool with no cookies. No personal data is collected."
   },
   es: {
@@ -328,7 +361,14 @@ const T = {
     ch_yt_btn:"Ver en YouTube",
     ch_yt_es_name:"YouTube · Español",
     ch_yt_es_text:"Los mismos sketches, en español. Uno nuevo cada viernes.",
-    ch_soon:"Pronto, más canales: TikTok y X.",
+    ch_tt_name:"TikTok · Inglés",
+    ch_tt_text:"Clips rápidos de Chad siendo Chad. La misma parodia, en pantalla pequeña.",
+    ch_tt_btn:"Ver en TikTok",
+    ch_tt_es_name:"TikTok · Español",
+    ch_tt_es_text:"Los clips de Chad, en español.",
+    ch_x_name:"X",
+    ch_x_text:"Sketches nuevos, chistes y sinsentidos corporativos.",
+    ch_x_btn:"Seguir en X",
     foot4:"Esta web usa GoatCounter, una analítica anónima y sin cookies. No se recoge ningún dato personal."
   }
 };
